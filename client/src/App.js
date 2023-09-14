@@ -1,12 +1,16 @@
 
 import './App.css';
 import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
-
-import Graph from './components/Graph';
+import React from 'react';
 import Sidebar from './components/Sidebar';
 import Dashboard from './screens/Dashboard';
 import Income from './screens/Income';
 import Expense from './screens/Expense';
+import Login from './components/Login';
+
+
+import Register from './components/Register';
+import HomeScreen from './screens/HomeScreen';
 
 
 function App() {
@@ -16,16 +20,46 @@ function App() {
       <Router>
       <Sidebar />
         <Routes>
+        <Route path="/home" element={<HomeScreen/>} exact />
           <Route path="/" element={<Dashboard/>} exact />
           <Route path="/income" element={<Income/>}  />
           <Route path="/expense" element={<Expense/>}  />
+          <Route path="/login" element={<Login/>}  />
+        
+          <Route path="/register" element={<Register/>}  />
         </Routes>
       </Router>
+     
      
      
     
     </div>
   );
 }
+// function App() {
+//   return (
+//     <div className="App">
+//       <Router>
+//         <Routes>
+//           <Route
+//             path="/*"
+//             element={
+//               <React.Fragment>
+//                 <Sidebar />
+//                 <Routes>
+//                   <Route path="/" element={<Dashboard />} exact />
+//                   <Route path="/income" element={<Income />} />
+//                   <Route path="/expense" element={<Expense />} />
+//                 </Routes>
+//               </React.Fragment>
+//             }
+//           />
+//           <Route path="/login" element={<Login />} />
+//           <Route path="/register" element={<Register />} />
+//         </Routes>
+//       </Router>
+//     </div>
+//   );
+// }
 
 export default App;

@@ -29,14 +29,18 @@ function Dashboard() {
   const {error,loading,expenses}=expenseList
   
 
-  const totalIncome = incomes.reduce((total, item) => total + item.amount, 0);
-  const totalExpense = expenses.reduce((total, item) => total + item.amount, 0);
+  // Assuming incomes and expenses are defined as arrays somewhere in your code
+
+// Check if incomes and expenses are defined before using reduce
+  const totalIncome = incomes ? incomes.reduce((total, item) => total + item.amount, 0) : 0;
+  const totalExpense = expenses ? expenses.reduce((total, item) => total + item.amount, 0) : 0;
+
   return (
     <div>
         
    <div className=' text-center drop-shadow-lg text-gray-800  sm:ml-64'>
-      <div className='flex  flex-wrap justify-center text-2xl py-8 mb-10 bg-slate-800 text-white rounded'>
-      <h1 className=' bg-white text-black p-3 border rounded-xl m-5 font-extrabold'>Account Balance :  <span className='text-green-500'>$ {totalIncome-totalExpense}</span></h1>
+      <div className='flex  flex-wrap justify-center text-2xl py-8 mb-10 bg-slate-800 text-white'>
+      <h1 className=' bg-white text-black p-3 border rounded-xl m-5 font-extrabold'>Accounst Balance :  <span className='text-green-500'>$ {totalIncome-totalExpense}</span></h1>
         <h1 className='bg-gray-100 text-black p-3 border rounded-xl m-5 font-extrabold'>Total Income : <span className='text-blue-500'>$ {totalIncome}</span></h1>
         <h1 className='bg-gray-100 text-black p-3 border rounded-xl m-5 font-extrabold'>Total Expense : <span className='text-red-500'>$ {totalExpense}</span></h1>
       </div>

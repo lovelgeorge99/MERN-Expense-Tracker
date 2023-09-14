@@ -22,6 +22,7 @@ export const listIncomes= () => async (dispatch) =>{
         dispatch({type:INCOME_LIST_REQUEST})
 
         const{data}= await axios.get('http://localhost:5000/api/get-incomes'); //testing locally
+        
 
       
         dispatch({

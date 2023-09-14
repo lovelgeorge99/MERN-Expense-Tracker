@@ -1,0 +1,38 @@
+version: '3'
+services:
+  frontend:
+    build: ./client
+    container_name: tracker-ui
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    networks:
+      - mern-network
+  
+  backend:
+    build: ./server
+    container_name: tracker-api
+    restart: always
+    ports:
+      - "5000:5000"
+    depends_on:
+      - database
+    networks:
+      - mern-network
+
+  database:
+    image: mongo
+    container_name: mongo-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - /home/spacemonk/mern:/data/db
+    networks:
+      - mern-network
+
+networks:
+  mern-network:
+    driver: bridge

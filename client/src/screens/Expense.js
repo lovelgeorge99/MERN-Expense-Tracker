@@ -19,9 +19,14 @@ function Expense() {
     
 
 }
+// Assuming incomes and expenses are defined as arrays somewhere in your code
+
+// Check if incomes and expenses are defined before using reduce
+const totalAmount = expenses ? expenses.reduce((total, item) => total + item.amount, 0) : 0;
+
 
   // console.log(expenses);
-  const totalAmount = expenses.reduce((total, item) => total + item.amount, 0);
+  // const totalAmount = expenses.reduce((total, item) => total + item.amount, 0);
 
   useEffect(()=>{
     
@@ -64,7 +69,7 @@ function Expense() {
       <Loader />
     :
     <div>
-      <h1 className='text-4xl py-8 mb-10 bg-slate-800 text-white rounded'>Total Expense : <span className='font-bold text-red-600'> - {totalAmount}</span> </h1>
+      <h1 className='text-4xl py-8 mb-10 bg-slate-800 text-white'>Total Expense : <span className='font-bold text-red-600'> - {totalAmount}</span> </h1>
 
       <Form prop={expenses} onSubmit={handleFormSubmit} onDelete={deleteHandler} typeOfForm={typeOfForm}/>
     </div>

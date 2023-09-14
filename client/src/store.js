@@ -4,9 +4,13 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { incomeListReducer,addIncomeReducer,incomeDeleteReducer } from './reducers/incomeReducers'
 import { expenseListReducer,addExpenseReducer,expenseDeleteReducer } from './reducers/expenseReducers'
+import { userLoginReducer } from './reducers/userReducer'
 
 
 const reducer=combineReducers({
+    userLogin:userLoginReducer,
+   
+   
     incomeList:incomeListReducer,
     addIncome:addIncomeReducer,
     deleteIncome:incomeDeleteReducer,
@@ -14,11 +18,15 @@ const reducer=combineReducers({
     expenseList:expenseListReducer,
     addExpense:addExpenseReducer,
     deleteExpense:expenseDeleteReducer,
+
+
 })
 
+const getUserInfoFromStorage=localStorage.getItem('userInfo') ?
+    JSON.parse(localStorage.getItem('userInfo')) :null
+
 const initialState={
-    'lovel':'george'
-    
+    userLogin:{userInfo:getUserInfoFromStorage}
    
 }
 const middleware = [thunk]

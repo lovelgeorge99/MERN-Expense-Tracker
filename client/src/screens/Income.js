@@ -23,8 +23,11 @@ function Income() {
 
 }
 
+const totalAmount = incomes ? incomes.reduce((total, item) => total + item.amount, 0) : 0;
+
   // console.log(incomes);
-  const totalAmount = incomes.reduce((total, item) => total + item.amount, 0);
+  // const totalAmount = incomes.reduce((total, item) => total + item.amount, 0);
+  
 
   useEffect(()=>{
     
@@ -68,11 +71,11 @@ function Income() {
       {loading ? 
         <Loader />
       :
-      <div>
-        <h1 className='text-4xl py-8 mb-10 bg-slate-800 text-white rounded'>Total Income : <span className='font-bold text-green-600'>+ ${totalAmount}</span> </h1>
+        <div>
+          <h1 className='text-4xl py-8 mb-10 bg-slate-800 text-white'>Total Income : <span className='font-bold text-green-600'>+ ${totalAmount}</span> </h1>
 
-        <Form prop={incomes} onSubmit={handleFormSubmit} onDelete={deleteHandler} typeOfForm={typeOfForm}/>
-      </div>
+          <Form prop={incomes} onSubmit={handleFormSubmit} onDelete={deleteHandler} typeOfForm={typeOfForm}/>
+        </div>
       }
       
       

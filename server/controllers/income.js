@@ -2,44 +2,15 @@ const incomeModel = require('../models/incomeModel');
 const userModel = require('../models/userModel');
 const mongoose=require('mongoose');
 
-
-// exports.addIncome = async (req, res) => {
-//   const { title, amount, type, category, description, date } = req.body;
-//   console.log(req.body)
-
-//   try {
-//     // validations
-//     if (!title || !category || !date) {
-//       return res.status(400).json({ message: 'Invalid data' });
-//     }
-//     if (isNaN(amount) || amount <= 0) {
-//       return res.status(400).json({ message: 'Invalid amount' });
-//     }
-
-//     // Create a new instance of the Income model with the data
-//     const income = new incomeModel({
-//       title,
-//       amount,
-//       type,
-//       category,
-//       description,
-//       date,
-//     });
-
-//     // Save the new income document to the database
-//     await income.save();
-
-//     res.status(200).json({ message: 'Income added' });
-//   } catch (error) {
-//     // Handle any errors that might occur during the process
-//     console.error('Error adding income', error);
-//     res.status(500).json({ message: 'Internal server error' });
-//   }
-// };
-
 exports.getIncome = async (req,res) =>{
   try{
-    const incomes =await incomeModel.find().sort({createdAt:-1})
+    // const {email} = req.query.email; 
+    // console.log(email)
+    const user=await userModel.findOne({email:'lovel@gmail.com'})
+    const u_id=user._id
+    console.log(u_id)
+    const incomes = await incomeModel.find({ user:'64ec0062ca55b2e0e70e961b' }).sort({ createdAt: -1 });
+    // const incomes =await incomeModel.find().sort({createdAt:-1})
     res.status(200).json(incomes)
   }
   catch(error){

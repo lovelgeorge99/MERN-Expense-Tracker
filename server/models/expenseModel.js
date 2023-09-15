@@ -4,9 +4,10 @@ const { model } = require('mongoose');
 const ExpenseSchema=new mongoose.Schema({
     user:{
         type:mongoose.Schema.Types.ObjectId,
+        required:true,
         ref:'User'
     },
-    
+
     title:{
         type:String,
         required:true,
@@ -30,7 +31,6 @@ const ExpenseSchema=new mongoose.Schema({
     },
     category:{
         type:String,
-        required:true,
         trim:true,
         
     },
@@ -43,4 +43,5 @@ const ExpenseSchema=new mongoose.Schema({
 
 },{timestamps:true})
 
-module.exports=mongoose.model('Expense',ExpenseSchema);
+
+module.exports=mongoose.model.Expenses || mongoose.model('Expense',ExpenseSchema);

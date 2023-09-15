@@ -4,11 +4,12 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { incomeListReducer,addIncomeReducer,incomeDeleteReducer } from './reducers/incomeReducers'
 import { expenseListReducer,addExpenseReducer,expenseDeleteReducer } from './reducers/expenseReducers'
-import { userLoginReducer } from './reducers/userReducer'
+import { userLoginReducer,userRegisterReducer } from './reducers/userReducer'
 
 
 const reducer=combineReducers({
     userLogin:userLoginReducer,
+    userRegister:userRegisterReducer,
    
    
     incomeList:incomeListReducer,

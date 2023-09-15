@@ -3,6 +3,8 @@ const expenseModel = require('../models/expenseModel');
 const userModel = require('../models/userModel');
 
 const crypto = require("crypto")
+const jwt = require('jsonwebtoken');
+
 
 
 async function hash(password) {
@@ -31,7 +33,13 @@ exports.loginUser = async (req,res)=>{
     const user =await userModel.findOne({email})
 
     if(user && (await verify(password,user.password))){
-        res.status(200).json(user);
+        res.status(200).json(
+            {
+                name:user.name,
+                email:user.email,
+                token: generateToken(user._id)
+            }
+        );
     }
     else{
         res.status(500).json({ message:"No user found" });
@@ -53,12 +61,14 @@ exports.registerUser = async (req,res)=>{
             name,
             email,
             password: hashedPassword,
+            
         });
 
         if(newUser){
             res.status(201).json({
                 name:newUser.name,
-                email:newUser.email
+                email:newUser.email,
+                token: generateToken(newUser._id)
             })
         }
         else{
@@ -69,3 +79,11 @@ exports.registerUser = async (req,res)=>{
     }
     
 }
+
+
+// Generate JWT
+ const generateToken=(id)=>{
+    return jwt.sign({id},process.env.JWT_SECRET,{
+        expiresIn: '30d',
+    })
+ }

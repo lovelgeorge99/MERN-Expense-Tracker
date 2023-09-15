@@ -16,12 +16,28 @@ import {
 } from '../constansts/expenseConstansts'
 
 
-export const listExpenses= () => async (dispatch) =>{
+export const listExpenses= () => async (dispatch,getState) =>{
     try{
         
         dispatch({type:EXPENSE_LIST_REQUEST})
+        const {
+            userLogin:{userInfo},
+        }=getState()
+        
 
-       const{data}= await axios.get('http://localhost:5000/api/get-expenses'); //testing locally
+        const config={
+            headers:{
+                'Content-type':'application/json',
+                Authorization:`Bearer ${userInfo.token}`
+                
+            }
+        }
+
+       const{data}= await axios.get(
+        'http://localhost:5000/api/get-expenses',
+        config
+        
+        ); //testing locally
 
       
         dispatch({
@@ -39,14 +55,18 @@ export const listExpenses= () => async (dispatch) =>{
     }
 }
 
-export const addExpense =(formData)=> async(dispatch)=>{
+export const addExpense =(formData)=> async(dispatch,getState)=>{
     try{
         
         dispatch({type:ADD_EXPENSE_LIST_REQUEST})
+        const {
+            userLogin:{userInfo},
+        }=getState()
 
         const config={
             headers:{
-                'Content-type':'application/json'
+                'Content-type':'application/json',
+                Authorization:`Bearer ${userInfo.token}`
             }
         }
 

@@ -6,10 +6,11 @@ exports.getIncome = async (req,res) =>{
   try{
     // const {email} = req.query.email; 
     // console.log(email)
-    const user=await userModel.findOne({email:'lovel@gmail.com'})
-    const u_id=user._id
-    console.log(u_id)
-    const incomes = await incomeModel.find({ user:'64ec0062ca55b2e0e70e961b' }).sort({ createdAt: -1 });
+    // console.log("toekn id "+req.user.id)
+    // const user=await userModel.findOne({email:'lovel@gmail.com'})
+    // const u_id=user._id
+    // // console.log(u_id)
+    const incomes = await incomeModel.find({ user: req.user.id }).sort({ createdAt: -1 });
     // const incomes =await incomeModel.find().sort({createdAt:-1})
     res.status(200).json(incomes)
   }
@@ -36,18 +37,22 @@ exports.deleteIncome = async(req,res) =>{
 // Add income using user id
 exports.addIncome = async (req, res) => {
   
-  const { email,title, amount, type, category, description, date } = req.body;
-  console.log(req.body)
+  const {title, amount, type, category, description, date } = req.body;
+  //console.log(req.body)
   try {
-    const user = await userModel.findOne({ email });
+
+    const id=req.user.id;
+   
+    
+    const user = await userModel.findOne({ _id:id });
     if (user) {
             // validations
-    if (!title || !category || !date) {
-      return res.status(400).json({ message: 'Invalid data' });
-    }
-    if (isNaN(amount) || amount <= 0) {
-      return res.status(400).json({ message: 'Invalid amount' });
-    }
+        if (!title || !category || !date) {
+          return res.status(400).json({ message: 'Invalid data' });
+        }
+        if (isNaN(amount) || amount <= 0) {
+          return res.status(400).json({ message: 'Invalid amount' });
+        }
 
     // Create a new instance of the Income model with the data
     const income = await new incomeModel({

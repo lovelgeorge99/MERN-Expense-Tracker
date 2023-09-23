@@ -3,6 +3,7 @@ services:
   frontend:
     build: ./client
     container_name: tracker-ui
+    image: lovelgeorge/mern-expense-tracker-frontend
     ports:
       - "3000:3000"
     stdin_open: true
@@ -15,7 +16,7 @@ services:
   backend:
     build: ./server
     container_name: tracker-api
-    restart: always
+    image: lovelgeorge/mern-expense-tracker-backend
     ports:
       - "5000:5000"
     depends_on:

@@ -14,7 +14,7 @@ function Register() {
 
    const dispatch=useDispatch();
    const navigate=useNavigate()
-   const redirect=navigate.search ? navigate.search.split('=')[1]: '/'
+   const redirect=navigate.search ? navigate.search.split('=')[1]: '/dashboard'
    
 
    const userRegister = useSelector(state=>state.userRegister)

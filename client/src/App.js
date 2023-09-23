@@ -20,8 +20,8 @@ function App() {
       <Router>
       <Sidebar />
         <Routes>
-        <Route path="/home" element={<HomeScreen/>} exact />
-          <Route path="/" element={<Dashboard/>} exact />
+        <Route path="/" element={<HomeScreen/>} exact />
+          <Route path="/dashboard" element={<Dashboard/>} exact />
           <Route path="/income" element={<Income/>}  />
           <Route path="/expense" element={<Expense/>}  />
           <Route path="/login" element={<Login/>}  />

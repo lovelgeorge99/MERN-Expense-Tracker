@@ -7,6 +7,7 @@ import { listIncomes } from '../actions/incomeActions'
 import { listExpenses } from '../actions/expenseActions'
 
 import LineGraph from '../components/LineGraph';
+import Loader from '../components/Loader';
 
 // import ChartGraph from '../components/ChartGraph';
 
@@ -34,10 +35,11 @@ function Dashboard() {
 // Check if incomes and expenses are defined before using reduce
   const totalIncome = incomes ? incomes.reduce((total, item) => total + item.amount, 0) : 0;
   const totalExpense = expenses ? expenses.reduce((total, item) => total + item.amount, 0) : 0;
+  console.log(totalIncome)
 
   return (
     <div>
-      {loading  ? <h1>loading</h1>:
+      {loading  ? <Loader />:
         error ? <h1>{error}</h1>:
 <div className=' text-center drop-shadow-lg text-gray-800  sm:ml-64'>
       <div className='flex  flex-wrap justify-center text-2xl py-8 mb-10 bg-slate-800 text-white'>

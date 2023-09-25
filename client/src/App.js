@@ -11,6 +11,7 @@ import Login from './components/Login';
 
 import Register from './components/Register';
 import HomeScreen from './screens/HomeScreen';
+import Contact from './screens/Contact';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/login" element={<Login/>}  />
         
           <Route path="/register" element={<Register/>}  />
+          <Route path="/contact" element={<Contact/>}  />
         </Routes>
       </Router>
      

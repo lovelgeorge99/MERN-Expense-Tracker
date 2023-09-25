@@ -32,12 +32,13 @@ function LineGraph({transaction,type}) {
       year: 'numeric',
     })
   );
-    
+ 
     const color = type === 'Income' ? 'green' : type === 'Expense' ? 'red' : 'black';
 
 
     const data ={
         labels:incomeLabels,
+       
         // labels:formattedDates,
 
         datasets:[
@@ -76,3 +77,4 @@ function LineGraph({transaction,type}) {
 }
 
 export default LineGraph
+

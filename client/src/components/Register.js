@@ -41,7 +41,7 @@ function Register() {
     <div className=''>
     
 
-      <form className='border p-3 text-left' onSubmit={submitHandler}>
+      <form className='md:w-[60%] w-96 p-10 border m-10 mx-auto container shadow-md text-left' onSubmit={submitHandler}>
         <h1 className=' font-extrabold mb-6'>Register New Account</h1>
           <div class="mb-6">
             <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Your name</label>

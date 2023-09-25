@@ -48,7 +48,7 @@ exports.addExpense= async (req, res) => {
 
 exports.getExpenses = async (req,res) =>{
   try{
-    console.log(req.user.id)
+    
     const expenses = await expenseModel.find({ user: req.user.id }).sort({ createdAt: -1 });
     res.status(200).json(expenses)
 
@@ -66,7 +66,7 @@ exports.deleteExpense = async(req,res) =>{
         res.status(200  ).json({ message: 'Expense deleted' });
       })
       .catch((err)=>{
-        res.status(500).json({ message: 'Deletelttin error' });
+        res.status(500).json({ message: 'Deletion error' });
       })
 
 }

@@ -65,11 +65,13 @@ const totalAmount = expenses ? expenses.reduce((total, item) => total + item.amo
 }
   return (
     <div className=' text-center drop-shadow-lg text-gray-800  sm:ml-64'>
-    {loading ? 
-      <Loader />
-    :
+      
+       
+    {loading ? <Loader />:
+    error ? <h1>{error}</h1>:
+    
     <div>
-      <h1 className='text-4xl py-8 mb-10 bg-slate-800 text-white'>Total Expense : <span className='font-bold text-red-600'> - {totalAmount}</span> </h1>
+      <h1 className='text-4xl  mb-10 py-14 md:py-8  bg-slate-800 text-white'>Total Expense : <span className='font-bold text-red-600'> - {totalAmount}</span> </h1>
 
       <Form prop={expenses} onSubmit={handleFormSubmit} onDelete={deleteHandler} typeOfForm={typeOfForm}/>
     </div>

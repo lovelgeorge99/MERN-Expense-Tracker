@@ -26,6 +26,7 @@ function Register() {
     },[navigate,userInfo,redirect])
 
   const submitHandler=(e) =>{ 
+    setMessage('');
     e.preventDefault()
     if(password!=confirmPassword){
       setMessage('Password Do Not Match');
@@ -40,6 +41,7 @@ function Register() {
     
     <div className=''>
     
+    <h1 className='text-4xl py-10 bg-slate-800 text-white'>MoneyMate.com</h1>
 
       <form className='md:w-[60%] w-96 p-10 border m-10 mx-auto container shadow-md text-left' onSubmit={submitHandler}>
         <h1 className=' font-extrabold mb-6'>Register New Account</h1>
@@ -61,6 +63,16 @@ function Register() {
           </div>
 
         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Register new account</button>
+        {loading ? 
+        <div className='flex justify-center'>
+          <svg class="mr-5 h-7 w-7 animate-spin text-green" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        </div>
+        : message !=  '' ? <div className="mt-3" >{message}</div> 
+        :<div className="text-black m-4">{error}</div>
+        }
       </form>
       
         </div>

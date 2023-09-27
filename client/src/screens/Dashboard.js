@@ -41,7 +41,7 @@ function Dashboard() {
     <div>
       {loading  ? <Loader />:
         error ? <h1>{error}</h1>:
-<div className=' text-center drop-shadow-lg text-gray-800  sm:ml-64'>
+        <div className=' text-center drop-shadow-lg text-gray-800  sm:ml-64'>
       <div className='flex  flex-wrap justify-center text-2xl py-8 mb-10 bg-slate-800 text-white'>
       <h1 className=' bg-white text-black p-3 border rounded-xl m-5 font-extrabold'>Accounst Balance :  <span className='text-green-500'>$ {totalIncome-totalExpense}</span></h1>
         <h1 className='bg-gray-100 text-black p-3 border rounded-xl m-5 font-extrabold'>Total Income : <span className='text-blue-500'>$ {totalIncome}</span></h1>
@@ -65,7 +65,7 @@ function Dashboard() {
       </div>
      
 
-     </div>
+        </div>
       }
     
    

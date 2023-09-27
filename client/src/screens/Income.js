@@ -68,11 +68,10 @@ const totalAmount = incomes ? incomes.reduce((total, item) => total + item.amoun
 
   return (
      <div className=' text-center drop-shadow-lg text-gray-800  sm:ml-64'>
-      {loading ? 
-        <Loader />
-      :
+      {loading ? <Loader />
+      : error ? <h1>{error}</h1>:
         <div>
-          <h1 className='text-4xl py-8 mb-10 bg-slate-800 text-white'>Total Income : <span className='font-bold text-green-600'>+ ${totalAmount}</span> </h1>
+          <h1 className='text-4xl py-14 md:py-8 mb-10 bg-slate-800 text-white'>Total Income : <span className='font-bold text-green-600'>+ ${totalAmount}</span> </h1>
 
           <Form prop={incomes} onSubmit={handleFormSubmit} onDelete={deleteHandler} typeOfForm={typeOfForm}/>
         </div>

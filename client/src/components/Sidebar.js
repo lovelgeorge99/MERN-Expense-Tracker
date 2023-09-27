@@ -7,6 +7,9 @@ import { useDispatch,useSelector} from 'react-redux'
 
 
 function Sidebar() {
+
+  let [open,setOpen]=useState(true);
+
    const userLogin=useSelector(state=>state.userLogin)
    const {userInfo}=userLogin;
    const dispatch=useDispatch()
@@ -23,7 +26,22 @@ function Sidebar() {
       else{
           setLoggedIn(false)
       }
-    },[dispatch,navigate,userInfo])
+
+      const handleClickOutside = (event) => {
+        if (!open && !document.getElementById('navbar').contains(event.target)) {
+          setOpen(true);
+        }
+      };
+  
+      // Add the event listener when the component mounts
+      document.addEventListener('mousedown', handleClickOutside);
+  
+      // Clean up the event listener when the component unmounts
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+
+    },[dispatch,navigate,userInfo,open])
    
   
   
@@ -110,16 +128,30 @@ function Sidebar() {
   return (
     <div className='bg-slate-800'>
 
-<button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="flex items-center p-2  ml-3 text-sm  rounded-lg sm:hidden ">
+{/* <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="flex items-center p-2  ml-3 text-sm  rounded-lg sm:hidden ">
   
 <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
   </svg>
-</button>
+</button> */}
+ <div onClick={()=>setOpen(!open)} className={`z-50  text-3xl absolute left-5 top-6 cursor-pointer md:hidden ${open ? '':'hidden'}`}>
+          <svg  class="w-6 h-6 text-white  " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+  </svg>
+    </div>
 
-<nav id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+{/* <nav id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar"> */}
+<nav id="navbar" class={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform md:translate-x-0 ${open ? '-translate-x-full':'sm:translate-x-0'} `}>
+
+   
+          
    <div class="h-full px-3 py-4 overflow-y-auto bg-slate-800  ">
-      <ul class="space-y-2 font-medium ">
+   <div onClick={()=>setOpen(!open)} className='text-3xl absolute right-8 top-6 cursor-pointer md:hidden'>
+   <svg class="w-5 h-5 dark:text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+  </svg>
+    </div>
+      <ul class="space-y-2 font-medium transition-all-duration-500 ease-in">
       
       {
          option.map((op)=>(

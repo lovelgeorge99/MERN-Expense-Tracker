@@ -9,10 +9,19 @@ const app=express()
 
 const PORT=process.env.PORT
 
+const allowedOrigin = 'https://moneymate.lovelgeorge.com';
+
+const corsOptions = {
+  origin: allowedOrigin,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Enable cookies or authentication headers
+};
+
 
 //middlewares
 app.use(express.json())
-app.use(cors())
+app.use(cors(corsOptions));
+
 
 // routes
 readdirSync('./routes').map((route) => app.use('/api/',require('./routes/'+ route))) 
